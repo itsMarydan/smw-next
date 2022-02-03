@@ -10,3 +10,18 @@
     border: #000000 2px solid;
     margin-top: 20px;
 }
+
+.btnThree button{
+    background-color: #ffffff;
+    color: #000000;
+    margin-top: 20px;
+    min-width: 100px;
+}
+
+
+.btnThree button:hover{
+    background-color: #000000;
+    color: #ffffff;
+    border: #ffffff 2px solid;
+    margin-top: 20px;
+}

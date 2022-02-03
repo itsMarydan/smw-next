@@ -51,5 +51,38 @@ html {
 }
 
 .bg-dark-choice{
-  background-color: #050D15;
+  background-color: #050D15 !important;
+}
+
+
+.card-horizontal {
+  display: flex;
+  flex: 1 1 auto;
+}
+
+.border-dark-choice{
+  border: #050D15 solid 2px !important;
+}
+
+.font-20{
+  font-size: 20px;
+}
+
+.highlightTitle{
+  font-size: 42px;
+  font-weight: 500;
+  font-family: 'Playfair Display', serif;
+}
+
+.pad-y-40{
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+
+.border-dark-around{
+  border: #050D15 solid 2px;
+}
+
+.border-dark-around img{
+  margin-left: -10px;
 }

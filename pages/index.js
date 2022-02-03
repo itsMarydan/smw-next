@@ -5,6 +5,7 @@ import BorderedWrap from "../components/section-layouts/bordered-wrap";
 import ActionCard from "../components/cards/actionCard";
 import {useEffect, useState} from "react";
 import BibleVerse from "../components/boards/bibleVerse";
+import ContentCard from "../components/cards/contentCard";
 
 //our-domain.com/
 export default function Home() {
@@ -25,16 +26,32 @@ export default function Home() {
 
     const cardArray=[{
         title: "Send A Prayer",
-        info:  "Send a short prayer request and we will continuously pray with you"
+        info:  "Send a short prayer request and we will continuously pray with you",
+        button: {
+            label: "Start",
+            url:"/send-prayer",
+        }
     },{
         title: "Resources",
-        info:  "Find materials and Programs our team members enjoy"
+        info:  "Find materials and Programs our team members enjoy",
+        button: {
+            label: "Enjoy",
+            url:"/resources",
+        }
     },{
         title: "Get Involved",
-        info: "Find out how to get involved with Start Mission World"
+        info: "Find out how to get involved with Start Mission World",
+        button: {
+            label: "Start",
+            url:"/get-involved",
+        }
     },{
         title: "Highlights",
-        info: "Find out how to get involved with Start Mission World"
+        info: "Enjoy Kingdom Highlights and moments you dont want to miss",
+        button: {
+            label: "View",
+            url:"/highlights",
+        }
     }];
 
     const bibleVerses=[
@@ -68,19 +85,27 @@ export default function Home() {
           <BorderedWrap>
               <BibleVerse item={bibleVerses[bibleVerseKey]} />
           </BorderedWrap>
-          {/*<BorderedWrap>*/}
-          {/*    <div className="container">*/}
-          {/*        <div className="row">*/}
-          {/*            {cardArray.map((item, key)=> (*/}
-          {/*                <div className="col-md-3 p-1" key={key}>*/}
-          {/*                    <ActionCard card={item} />*/}
-          {/*                </div>*/}
-          {/*            ))}*/}
-          {/*        </div>*/}
-          {/*    </div>*/}
-          {/*</BorderedWrap>*/}
 
+              <div className="container p-5">
+                  <div className="row">
+                      {cardArray.map((item, key)=> (
+                          <div className="col-md-3 p-1" key={key}>
+                              <ActionCard card={item} />
+                          </div>
+                      ))}
+                  </div>
+              </div>
+          <BorderedWrap>
+              <div className="text-center">
+                  <div className="highlightTitle">Highlights</div>
+              </div>
+          </BorderedWrap>
+          <div className="container">
 
+              <div className="div">
+                  <ContentCard />
+              </div>
+          </div>
       </>
   )
 }
