@@ -1,0 +1,9 @@
+.card{
+    max-width: 600px;
+    display: block;
+    margin: auto;
+}
+
+.form{
+    margin-top: 40px;
+}

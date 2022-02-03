@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap');
+.nav{
+    border-top:  #000000 2px solid;
+    border-bottom:   #000000 2px solid;
+    height: 82px;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    background-color: #ffffff;
+    z-index:1;
+}
+.vertical{
+  height: 80px;
+    line-height: 80px;
+}
+
+.link{
+    text-decoration: none !important;
+}
+.logo{
+    font-size: 30px;
+    font-weight: 500;
+    font-family: 'Playfair Display', serif
+}
+
+.font16{
+    font-size: 20px;
+}

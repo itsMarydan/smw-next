@@ -1,0 +1,12 @@
+.btnOne button{
+    background-color: #000000;
+    color: #ffffff;
+    margin-top: 20px;
+}
+
+.btnOne button:hover{
+    background-color: #ffffff;
+    color: #000000;
+    border: #000000 2px solid;
+    margin-top: 20px;
+}
