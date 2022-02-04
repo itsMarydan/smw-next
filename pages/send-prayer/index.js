@@ -9,6 +9,7 @@ export default function SendPrayer() {
     const [showPrayerForm, setShowPrayerForm] = useState(true);
     const [showPrayerRequest, setShowPrayerRequest] = useState(false);
      const [prayerKey, setPrayerKey] = useState(0);
+
     const prayers = [
         {
             name: "Mary",
@@ -41,9 +42,6 @@ export default function SendPrayer() {
                 " It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. "
         }
     ]
-        useEffect(() => {
-            setPrayerKey(randomPrayer);
-        }, [prayers])
     const button = {
         label: "Send A Prayer"
     }
@@ -60,6 +58,9 @@ export default function SendPrayer() {
     }
     const randomPrayer = Math.floor(Math.random() * prayers.length);
 
+    useEffect(() => {
+        setPrayerKey(randomPrayer);
+    }, [randomPrayer])
     return (
         <>
             <Banner bannerMessage={bannerMessage}/>

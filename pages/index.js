@@ -9,11 +9,10 @@ import ContentCard from "../components/cards/contentCard";
 
 //our-domain.com/
 export default function Home() {
+    const bannerMessage ="Star Mission World";
+
     const [bibleVerseKey, setBibleVerseKey] = useState(0);
-    useEffect(() => {
-        setBibleVerseKey(randomVerse);
-    })
-   const bannerMessage ="Star Mission World";
+
     const typeOneData = {
         image: '/images/white.jpg',
         header: "Our Mission",
@@ -24,7 +23,8 @@ export default function Home() {
         }
     }
 
-    const cardArray=[{
+    const cardArray=[
+        {
         title: "Send A Prayer",
         info:  "Send a short prayer request and we will continuously pray with you",
         button: {
@@ -70,7 +70,9 @@ export default function Home() {
         }
     ]
     const randomVerse = Math.floor(Math.random() * bibleVerses.length);
-
+    useEffect(() => {
+        setBibleVerseKey(randomVerse);
+    }, [bannerMessage, randomVerse]);
     return (
       <>
           <Banner bannerMessage={bannerMessage} />

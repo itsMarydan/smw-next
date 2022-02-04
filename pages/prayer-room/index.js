@@ -87,7 +87,7 @@ export default function PrayerRoom() {
                     <ModalOne section={zoomData}>
                         <div className="row">
                             {ActiveSessions.map((item, key) => (
-                                <div className="col-md-12 my-2">
+                                <div key={key} className="col-md-12 my-2">
                                     <ZoomCard session={item}/>
                                 </div>
                             ))}

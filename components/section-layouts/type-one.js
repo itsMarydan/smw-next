@@ -9,7 +9,7 @@ export default function TypeOne(props){
                 <div className="container">
                     <div className="row">
                         <div className="col-md-5">
-                            <Image width={500} height={350} src={props.section.image} />
+                            <Image alt="display" width={500} height={350} src={props.section.image} />
                         </div>
                         <div className="col">
                             <div className={classes.message}>
