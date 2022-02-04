@@ -64,6 +64,14 @@ html {
   border: #050D15 solid 2px !important;
 }
 
+.font-30{
+  font-size: 30px;
+}
+
+.roboto{
+  font-family: 'Roboto', sans-serif;
+}
+
 .font-20{
   font-size: 20px;
 }
@@ -74,6 +82,9 @@ html {
   font-family: 'Playfair Display', serif;
 }
 
+.play{
+  font-family: 'Playfair Display', serif;
+}
 .pad-y-40{
   padding-top: 60px;
   padding-bottom: 40px;
@@ -91,6 +102,19 @@ html {
   animation: blinking-cursor 0.8s cubic-bezier(0.68, 0.01, 0.01, 0.99) 0s infinite;
 }
 
+
+@media only screen and (max-width: 980px) {
+  .nav-large{
+    display: none;
+  }
+  .nav-small{
+    display: block !important;
+  }
+}
+
+.nav-small{
+  display: none;
+}
 @keyframes blinking-cursor {
   0% {
     opacity: 0;

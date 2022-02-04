@@ -10,6 +10,21 @@
     background-color: #ffffff;
     z-index:1;
 }
+
+.navMobile{
+    border-top:  #000000 2px solid;
+    border-bottom:   #000000 2px solid;
+    top: 0;
+    position: fixed;
+    overflow: hidden;
+    background-color: #ffffff;
+    z-index:1;
+    width: 100%;
+}
+.navMobileBottom{
+    border-top:   #000000 2px solid;
+    margin-top: 10px;
+}
 .vertical{
   height: 80px;
     line-height: 80px;

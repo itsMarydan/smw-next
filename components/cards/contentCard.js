@@ -26,8 +26,9 @@ export default function ContentCard() {
                                             <FontAwesomeIcon icon={faTag}/> Pray
                                         </div>
                                     </div>
-                                    <Link href="/highlights"
-                                       className="badge bg-dark mx-1 text-white p-2 font-16 stretched-link">See More</Link>
+                                    <span className="badge bg-dark mx-1 text-white p-2 font-16 ">
+                                             <Link href="/highlights" className="stretched-link">See More</Link>
+                                    </span>
                                 </div>
                             </div>
                         </div>

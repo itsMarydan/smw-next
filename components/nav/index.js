@@ -1,6 +1,6 @@
 import classes from "./nav.module.css";
 import Link from "next/link";
-import {faFacebookSquare, faTwitterSquare, faYoutubeSquare} from "@fortawesome/free-brands-svg-icons";
+import {faFacebookSquare} from "@fortawesome/free-brands-svg-icons";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {useState} from "react";
 import SearchInput from "../searchInput";
@@ -14,8 +14,8 @@ export default function Navigation() {
     ]
     const socialMedia = [
         {url: "/", icon: <FontAwesomeIcon size="2x" icon={faFacebookSquare}/>},
-        {url: "/", icon: <FontAwesomeIcon size="2x" icon={faTwitterSquare}/>},
-        {url: "/", icon: <FontAwesomeIcon size="2x" icon={faYoutubeSquare}/>}
+        // {url: "/", icon: <FontAwesomeIcon size="2x" icon={faTwitterSquare}/>},
+        // {url: "/", icon: <FontAwesomeIcon size="2x" icon={faYoutubeSquare}/>}
     ]
     const [showSearchBar, setShowSearchBar] = useState(false);
     return (
