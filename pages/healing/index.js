@@ -1,19 +1,22 @@
 import Banner from "../../components/banner";
+import ReactRotatingText from "react-rotating-text/lib/ReactRotatingText";
 
-export default function Healing(){
-    const bannerMessage ="Inner Healing";
+export default function Healing() {
+    const bannerMessage = "Inner Healing";
     const rotateText = [
         "Just Breathe",
         "Love is never Far",
         "Let go of the past",
         "Experience inner peace"
     ]
-    return(
+
+    const section = {
+        rotate: rotateText
+    }
+    return (
         <>
-            <Banner bannerMessage={bannerMessage} />
-            <div className="container">
-                <h1>Inner Healing </h1>
-            </div>
+            <Banner bannerMessage={bannerMessage}/>
+            <Healing section={section} />
         </>
     )
 }
