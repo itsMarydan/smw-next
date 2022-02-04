@@ -10,9 +10,26 @@ import ContentCard from "../components/cards/contentCard";
 //our-domain.com/
 export default function Home() {
     const bannerMessage ="Star Mission World";
-
     const [bibleVerseKey, setBibleVerseKey] = useState(0);
-
+    const highlights = [
+        {
+            img: "/images/mission.jpg",
+            title: "Card Title",
+            subtitle: "Card Subtitle",
+            content: "Some quick example text to build on the card title and make up the bulk of the cards content.Some quick example text to build on the card title and make up the bulk of the cards content.",
+            tag: "Pray",
+            linkLabel: "See More",
+            linkUrl: "/highlights"
+        }, {
+            img: "/images/mission.jpg",
+            title: "Card Title",
+            subtitle: "Card Subtitle",
+            content: "Some quick example text to build on the card title and make up the bulk of the cards content.Some quick example text to build on the card title and make up the bulk of the cards content.",
+            tag: "Pray",
+            linkLabel: "See More",
+            linkUrl: "/highlights"
+        }
+    ]
     const typeOneData = {
         image: '/images/white.jpg',
         header: "Our Mission",
@@ -22,7 +39,6 @@ export default function Home() {
             label: "Learn More"
         }
     }
-
     const cardArray=[
         {
         title: "Send A Prayer",
@@ -53,7 +69,6 @@ export default function Home() {
             url:"/highlights",
         }
     }];
-
     const bibleVerses=[
         {
             location: "John 3:16",
@@ -103,9 +118,20 @@ export default function Home() {
               </div>
           </BorderedWrap>
           <div className="container">
-
-              <div className="div">
-                  <ContentCard />
+              <div className="container">
+                  <div className="mt-4">
+                      <div className="container mt-4">
+                          <div className="container mx-auto mt-4">
+                              <div className="row">
+                                      {highlights.map((item, key) => (
+                                          <div  key={key} className="col-md-4">
+                                              <ContentCard card={item}/>
+                                          </div>
+                                      ))}
+                              </div>
+                          </div>
+                      </div>
+                  </div>
               </div>
           </div>
       </>

@@ -14,8 +14,6 @@ export default function Navigation() {
     ]
     const socialMedia = [
         {url: "/", icon: <FontAwesomeIcon size="2x" icon={faFacebookSquare}/>},
-        // {url: "/", icon: <FontAwesomeIcon size="2x" icon={faTwitterSquare}/>},
-        // {url: "/", icon: <FontAwesomeIcon size="2x" icon={faYoutubeSquare}/>}
     ]
     const [showSearchBar, setShowSearchBar] = useState(false);
     return (
@@ -29,7 +27,7 @@ export default function Navigation() {
                             </div>
                         </div>
                     </div>
-                    <div className="col-7">
+                    <div className="col-8">
                         <div className="row">
                             {navItems.map((item, key) => (
                                 <div className="col text-center dark-bg-hover border-right" key={key}>
@@ -37,11 +35,6 @@ export default function Navigation() {
                                     </div>
                                 </div>
                             ))}
-                        </div>
-                    </div>
-                    <div className="col-1 border-right">
-                        <div className="search">
-                            <SearchInput />
                         </div>
                     </div>
                     <div className="col-2">

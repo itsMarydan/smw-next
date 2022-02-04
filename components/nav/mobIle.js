@@ -19,7 +19,7 @@ export default function MobIle() {
                         <div className="nav-scroller mb-2">
                             <nav className="nav d-flex justify-content-between">
                                 {navItems.map((item, key) => (
-                                  <Link className="p-2 link-secondary" href={`/${item.slug}`}>{item.label}</Link>
+                                  <Link key={key} className="p-2 link-secondary" href={`/${item.slug}`}>{item.label}</Link>
                                 ))}
                             </nav>
                         </div>
