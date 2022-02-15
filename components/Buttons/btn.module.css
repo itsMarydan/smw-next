@@ -11,7 +11,7 @@
     margin-top: 20px;
 }
 
-.btnThree button{
+.btnThree button, .btnFour button{
     background-color: #ffffff;
     color: #000000;
     margin-top: 20px;
@@ -19,7 +19,7 @@
 }
 
 
-.btnThree button:hover{
+.btnThree button:hover, .btnFour button:hover{
     background-color: #000000;
     color: #ffffff;
     border: #ffffff 2px solid;

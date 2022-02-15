@@ -1,14 +1,13 @@
 import BtnTypeThree from "../Buttons/BtnTypeThree";
 import Link from 'next/link';
 
-export default function Footer() {
+export default function Footer(props) {
     function formSubmit() {
 
     }
 
-    const button = {
-        label: "Send"
-    }
+
+
     return (
         <>
             <div className="bg-dark-choice text-white py-3">
@@ -16,26 +15,27 @@ export default function Footer() {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-5">
-                                <h5 className="play"><Link href="/">Star Mission World</Link></h5>
+                                <h5 className="play"><Link href="/">{props.footer.footerTitle}</Link></h5>
                                 <div className="row">
                                     <div className="col-6">
                                         <ul className="list-unstyled roboto">
-                                            <li><Link href="/prayer-room">Prayer Room</Link></li>
-                                            <li><Link href="/resources">Resources</Link></li>
-                                            <li><Link href="/highlights">Highlights</Link></li>
+                                            {props.footer.footerItemsGroup1.map((item, key)=> (
+                                                <li key={key}><Link href={`/${item.url}`}>{item.label}</Link></li>
+                                            ))}
                                         </ul>
                                     </div>
                                     <div className="col-6">
                                         <ul className="list-unstyled roboto">
-                                            <li><Link href="/about">About</Link></li>
-                                            <li><Link href="/legal">Legal Terms</Link></li>
+                                            {props.footer.footerItemsGroup2.map((item, key) => (
+                                                <li key={key}><Link href={`/${item.url}`}>{item.label}</Link></li>
+                                                ))}
                                         </ul>
                                     </div>
                                 </div>
                                 <br/>
                             </div>
                             <div className="col-md-2">
-                                <h5 className="text-md-right play">Contact Us</h5>
+                                <h5 className="text-md-right play">{props.footer.footerTitle2}</h5>
                                 <hr/>
                             </div>
                             <div className="col-md-5">
@@ -49,7 +49,7 @@ export default function Footer() {
                                                   rows={3} placeholder="Message"></textarea>
                                     </fieldset>
                                     <fieldset className="form-group text-xs-right">
-                                        <BtnTypeThree clickAction={formSubmit} button={button}/>
+                                        <BtnTypeThree clickAction={formSubmit} button={props.footer.button}/>
                                     </fieldset>
                                 </form>
                             </div>

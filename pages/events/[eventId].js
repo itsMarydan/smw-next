@@ -6,8 +6,15 @@ import BtnTypeTwo from "../../components/Buttons/BtnTypeTwo";
 export default function EventPage(){
    const router = useRouter();
    const eventId = router.query.eventId;
-   const button = {
-       label: "Add to Calender"
+
+   const eventDetails = {
+       title: "New Event Title",
+       content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout." +
+           "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+       button:{
+           label: "Add to Calender"
+       }
+
    }
 
    function onClick(){
@@ -20,17 +27,14 @@ export default function EventPage(){
                     <div className="content">
                         <div className="text-center text-decoration-underline">
                             <div className={classes.categoryHeader}>
-                                New Event Title
+                                {eventDetails.title}
                             </div>
                         </div>
                         <div className={classes.sectionHeaderContent}>
-                            It is a long established fact that a reader will be distracted by the readable content of a
-                            page when looking at its layout.
-                            It is a long established fact that a reader will be distracted by the readable content of a
-                            page when looking at its layout.
+                            {eventDetails.content}
                         </div>
                         <div className="text-center">
-                            <BtnTypeTwo clickAction={onClick} button={button}/>
+                            <BtnTypeTwo clickAction={onClick} button={eventDetails.button}/>
                         </div>
                     </div>
                 </CenteredCardWithBackground>

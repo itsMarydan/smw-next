@@ -6,6 +6,7 @@ import ActionCard from "../components/cards/actionCard";
 import {useEffect, useState} from "react";
 import BibleVerse from "../components/boards/bibleVerse";
 import ContentCard from "../components/cards/contentCard";
+import TypeFour from "../components/section-layouts/type-four";
 
 //our-domain.com/
 export default function Home() {
@@ -94,7 +95,7 @@ export default function Home() {
           <div className="bg-dark-choice vh-80">
               <div className="container">
                   <div className="text-white">
-                      <TypeOne section={typeOneData} />
+                      <TypeFour section={typeOneData} />
                   </div>
               </div>
           </div>

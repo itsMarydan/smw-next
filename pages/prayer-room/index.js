@@ -38,29 +38,23 @@ export default function PrayerRoom() {
         show: showCalendar,
         handleClose: handleCloseCalender
     }
-
     const zoomData = {
         title: "Join Live Zoom Prayer!",
         show: showZoom,
         handleClose: handleCloseZoom
     }
-
     function showCalender() {
         setShowCalender(true);
     }
-
     function showZoomModal() {
         setShowZoom(true);
     }
-
     const showCalenderButton = {
         label: "Schedule a Prayer Appointment"
     }
-
     const showZoomCall = {
         label: "Join Live Zoom Prayer"
     }
-
     const ActiveSessions = ZoomSessions.filter(sessions => sessions.isActive === true);
     const volunteer = {
         header: "We Need You!",

@@ -1,10 +1,21 @@
 import Navigation from "../nav";
 import classes from './layout.module.css';
-import Banner from "../banner";
 import Footer from "../footer";
 import MobIle from "../nav/mobIle";
+import {footerItemsGroup1, footerItemsGroup2, footerTitle, footerTitle2} from "../data/footerDb";
 
 export default function Layout({children}) {
+    const button = {
+        label: "Send"
+    }
+
+    const footer = {
+        footerTitle: footerTitle,
+        footerItemsGroup1: footerItemsGroup1,
+        footerItemsGroup2: footerItemsGroup2,
+        footerTitle2: footerTitle2,
+        button: button
+    }
 
     return (
         <>
@@ -13,13 +24,13 @@ export default function Layout({children}) {
                     <Navigation/>
                 </div>
                 <div className="nav-small">
-                    <MobIle />
+                    <MobIle/>
                 </div>
                 <div className={classes.page}>
                     {children}
                 </div>
                 <div className="mt-5">
-                    <Footer />
+                    <Footer footer={footer}/>
                 </div>
             </div>
         </>

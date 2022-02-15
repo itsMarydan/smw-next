@@ -2,6 +2,9 @@ import Banner from "../../components/banner";
 import TypeThree from "../../components/section-layouts/type-three";
 import BorderedWrap from "../../components/section-layouts/bordered-wrap";
 import SearchInput from "../../components/searchInput";
+import ResourceList from "../../components/section-layouts/resource-list";
+import {resources} from "../../components/data/resourcedata";
+
 
 export default function Healing() {
     const bannerMessage = "Inner Healing";
@@ -13,12 +16,21 @@ export default function Healing() {
     ]
 
     const section = {
-        rotate: rotateText
+        rotate: rotateText,
+        img: "/images/inner.jpg",
+        title: "Healing that starts from the inside out",
+        content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, " +
+            "making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, " +
+            "and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years," +
+            " sometimes by accident, sometimes on purpose (injected humour and the like).",
+
     }
+
+    const healingResources = resources.filter(resource => resource.isHealing === true);
     return (
         <>
             <Banner bannerMessage={bannerMessage}/>
-            <TypeThree/>
+            <TypeThree section={section}/>
             <BorderedWrap>
                 <div className="text-center">
                     <div className="highlightTitle">Resources Related to Healing</div>
@@ -27,61 +39,12 @@ export default function Healing() {
             <div className="container">
                 <div className="pt-4">
                     Search Resources by # Tags: <SearchInput/>
-                    <div className="hold mt-4 border-bottom font-20">
-                        <div className="container">
-                            <h6 className="g">A hope for The future by Jame Author</h6>
-                            <div className="content py-3 my-2">
-                                Various versions have evolved over the years, sometimes by accident, sometimes on
-                                purpose
-                                (injected humour and the like). Various versions have evolved over the years, sometimes
-                                by accident, sometimes on purpose
-                                (injected humour and the like).
+                    <div className="mt-4">
+                        {healingResources.map((item, key) => (
+                            <div key={key}>
+                                <ResourceList resource={item}/>
                             </div>
-                            <h6 className="dib">#Faithfulness #Broken #Lostlove</h6>
-                        </div>
-                        <div className="float-end">- Mary Olowu</div>
-                    </div>
-                    <div className="hold mt-4 border-bottom font-20">
-                        <div className="container">
-                            <h6 className="g">A hope for The future by Jame Author</h6>
-                            <div className="content py-3 my-2">
-                                Various versions have evolved over the years, sometimes by accident, sometimes on
-                                purpose
-                                (injected humour and the like). Various versions have evolved over the years, sometimes
-                                by accident, sometimes on purpose
-                                (injected humour and the like).
-                            </div>
-                            <h6 className="dib">#Faithfulness #Broken #Lostlove</h6>
-                        </div>
-                        <div className="float-end">- Mary Olowu</div>
-                    </div>
-                    <div className="hold mt-4 border-bottom font-20">
-                        <div className="container">
-                            <h6 className="g">A hope for The future by Jame Author</h6>
-                            <div className="content py-3 my-2">
-                                Various versions have evolved over the years, sometimes by accident, sometimes on
-                                purpose
-                                (injected humour and the like). Various versions have evolved over the years, sometimes
-                                by accident, sometimes on purpose
-                                (injected humour and the like).
-                            </div>
-                            <h6 className="dib">#Faithfulness #Broken #Lostlove</h6>
-                        </div>
-                        <div className="float-end">- Mary Olowu</div>
-                    </div>
-                    <div className="hold mt-4 border-bottom font-20">
-                        <div className="container">
-                            <h6 className="g">A hope for The future by Jame Author</h6>
-                            <div className="content py-3 my-2">
-                                Various versions have evolved over the years, sometimes by accident, sometimes on
-                                purpose
-                                (injected humour and the like). Various versions have evolved over the years, sometimes
-                                by accident, sometimes on purpose
-                                (injected humour and the like).
-                            </div>
-                            <h6 className="dib">#Faithfulness #Broken #Lostlove</h6>
-                        </div>
-                        <div className="float-end">- Mary Olowu</div>
+                        ))}
                     </div>
                 </div>
 

@@ -52,7 +52,6 @@ export default function SendPrayer() {
     }
 
     function submitPrayer() {
-        console.log(`Am here`)
         setShowPrayerForm(false);
         setShowPrayerRequest(true);
     }
