@@ -6,16 +6,34 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faCalendar} from "@fortawesome/free-solid-svg-icons";
 import BorderedWrap from "../../components/section-layouts/bordered-wrap";
 import FormOne from "../../components/Forms/formOne";
+import {API_DOMAIN} from "../../helpers/ENUM";
+import axios from "axios";
 
-export default function EventsPage() {
-    const bannerMessage = "Events and Activities";
+
+export async function getStaticProps() {
+
+    const key = 'Events and Activities'
+    const urlPage = `${API_DOMAIN}/api/eventspage/${key}`;
+    const resPage = await axios.get(urlPage);
+    const page = await resPage.data;
+
+    return {
+        props: {
+            page: page,
+        },
+        revalidate: 10,
+    }
+
+}
+export default function EventsPage(props) {
+    const bannerMessage = props.page.pageHeader;
     return (
         <>
             <Banner bannerMessage={bannerMessage}/>
             <div className="my-4">
                 <div className="container">
                     <div className={classes.categoryHeader}>
-                        Upcoming Events & Activities
+                        {props.page.headerOne}
                     </div>
                     <div className="div">
                         <FontAwesomeIcon size="1x" icon={faCalendar}/> <Link href='/events/new-event'> New Event</Link>
@@ -32,7 +50,7 @@ export default function EventsPage() {
             <div className="my-4">
                 <div className="container">
                     <div className={classes.categoryHeader}>
-                        Past Events & Activities
+                        {props.page.headerTwo}
                     </div>
 
                     <div className={classes.categoryList}>
@@ -52,17 +70,14 @@ export default function EventsPage() {
             <BorderedWrap>
                 <div className="text-center">
                     <div className={classes.sectionHeader}>
-                        Host an Activity
+                        {props.page.headerThree}
                     </div>
                 </div>
             </BorderedWrap>
 
             <div className="container">
                     <div className={classes.sectionHeaderContent}>
-                        It is a long established fact that a reader will be distracted by the readable content of a
-                        page when looking at its layout.
-                        It is a long established fact that a reader will be distracted by the readable content of a
-                        page when looking at its layout.
+                        {props.page.content}
                     </div>
                 <FormOne />
             </div>

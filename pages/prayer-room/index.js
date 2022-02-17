@@ -9,37 +9,55 @@ import {useState} from "react";
 import ZoomCard from "../../components/cards/zoomCard";
 import {ZoomSessions} from "../../components/data/zoomSessions";
 import FormOne from "../../components/Forms/formOne";
+import {API_DOMAIN} from "../../helpers/ENUM";
+import axios from "axios";
 
-export default function PrayerRoom() {
+
+export async function getStaticProps() {
+    const key = 'prayer';
+    const urlPage = `${API_DOMAIN}/api/prayer/${key}`;
+    const resPage = await axios.get(urlPage);
+    const page = await resPage.data;
+    const urlZoom = `${API_DOMAIN}/api/zooms`;
+    const resZoom = await axios.get(urlZoom);
+    const zoom = await resZoom.data;
+    return {
+        props: {
+            page: page,
+            zoom: zoom
+
+        },
+        revalidate: 10,
+    }
+
+}
+export default function PrayerRoom(props) {
     const [showCalendar, setShowCalender] = useState(false);
     const [showZoom, setShowZoom] = useState(false);
     const handleCloseCalender = () => setShowCalender(false);
     const handleCloseZoom = () => setShowZoom(false);
 
-    const bannerMessage = "Prayer Room";
+    const bannerMessage = props.page.pageTitle;
     const typeOneData = {
-        image: '/images/pray.jpg',
-        header: "Why We Pray",
-        content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-        button: {
-            url: 'send-prayer',
-            label: "Send A Prayer"
-        }
+        image: props.page.image,
+        header: props.page.headerOne,
+        content: props.page.contentOne,
+        button:props.page.buttonOne
     }
     const typeTwoData = {
-        header: "ICU For Prayers",
-        content: "A standard HTML form is a convenient way to make an HTTP request to send data to a server (either your own server or external service).In the example below, clicking \"Register\" will make a POST request to the specified URL."
+        header: props.page.headerTwo,
+        content:props.page.contentTwo
     }
     const calender = {
-        url: "https://calendly.com/olowu-marydan/blueinit-beta-testers"
+        url: props.page.calenderUrl
     }
     const calenderData = {
-        title: "Schedule a Prayer Session!",
+        title: props.page.calenderTitle,
         show: showCalendar,
         handleClose: handleCloseCalender
     }
     const zoomData = {
-        title: "Join Live Zoom Prayer!",
+        title: props.page.zoomTitle,
         show: showZoom,
         handleClose: handleCloseZoom
     }
@@ -49,18 +67,14 @@ export default function PrayerRoom() {
     function showZoomModal() {
         setShowZoom(true);
     }
-    const showCalenderButton = {
-        label: "Schedule a Prayer Appointment"
-    }
-    const showZoomCall = {
-        label: "Join Live Zoom Prayer"
-    }
-    const ActiveSessions = ZoomSessions.filter(sessions => sessions.isActive === true);
+    const showCalenderButton = props.page.calenderButton;
+    const showZoomCall = props.page.zoomButton;
+    const ActiveSessions = props.zoom.filter(sessions => sessions.isActive === true);
     const volunteer = {
-        header: "We Need You!",
-        content: "We are accepting volunteers to host prayer session online at any 1 -2 hour intervals of your choice from anywhere in the world." +
-            " Be a part of something greater than yourself and reap the rewards God has in store for your willing heart."
+        header: props.page.volunteerHeader,
+        content: props.page.volunteerContent
     }
+    const showZoomMessage = ActiveSessions.length === -1 ? true : false;
     return (
         <>
             <Banner bannerMessage={bannerMessage}/>
@@ -79,6 +93,7 @@ export default function PrayerRoom() {
                         <Calender calender={calender}/>
                     </ModalOne>
                     <ModalOne section={zoomData}>
+                        <div className={showZoomMessage ? "d-block" : "d-none"}>We have no active ZOOM sessions at this this time</div>
                         <div className="row">
                             {ActiveSessions.map((item, key) => (
                                 <div key={key} className="col-md-12 my-2">

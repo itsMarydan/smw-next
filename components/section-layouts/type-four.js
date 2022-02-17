@@ -1,6 +1,7 @@
 import Image from "next/image";
 import classes from "./section-types.module.css";
 import BtnTypeFour from "../Buttons/BtnTypeFour";
+import {imageLoader} from "../../helpers/NextImage";
 
 export default function TypeFour(props) {
 
@@ -10,7 +11,7 @@ export default function TypeFour(props) {
                 <div className="container">
                     <div className="row">
                         <div className="col-md-5">
-                            <Image alt="display" width={500} height={350} src={props.section.image}/>
+                            <Image loader={imageLoader} alt="display" width={500} height={350} src={props.section.image}/>
                         </div>
                         <div className="col">
                             <div className={classes.message}>

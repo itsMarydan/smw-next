@@ -1,7 +1,7 @@
 import classes from "./cards.module.css";
 import {months} from "../data/months";
 export default function ZoomCard(props){
-
+    const zoomDate =  new Date(props.session.date);
 
 
     return(
@@ -13,10 +13,10 @@ export default function ZoomCard(props){
                             <div className={classes.widgetTitleWrap}>
                                 <div className={classes.widgetDate}>
                                     <div className={classes.dateDay}>
-                                        {props.session.date.getDate()}
+                                        {zoomDate.getDate()}
                                     </div>
                                     <div className={classes.dateMonth}>
-                                        {months[props.session.date.getMonth()]}
+                                        {months[zoomDate.getMonth()]}
                                     </div>
                                 </div>
                                 <div className={classes.meetingInfo}>

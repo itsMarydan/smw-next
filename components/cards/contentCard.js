@@ -2,13 +2,14 @@ import {faTag} from "@fortawesome/free-solid-svg-icons/faTag";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import Image from "next/image";
 import Link from "next/link";
+import {imageLoader} from "../../helpers/NextImage";
 
 export default function ContentCard(props) {
 
     return (
         <>
             <div className="card border-dark-choice">
-                <Image src={props.card.img} width={500} height={400} className="card-img-top" alt="..."/>
+                <Image loader={imageLoader} src={props.card.image} width={500} height={400} className="card-img-top" alt="..."/>
                 <div className="card-body">
                     <h5 className="card-title">{props.card.title}</h5>
                     <h6 className="card-subtitle mb-2 text-muted">{props.card.subtitle}</h6>

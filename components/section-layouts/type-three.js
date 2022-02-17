@@ -1,6 +1,7 @@
 import Image from "next/image";
 import RotateText from "./rotate-text";
 import classes from "./section-types.module.css";
+import {imageLoader} from "../../helpers/NextImage";
 
 export  default function TypeThree(props){
 
@@ -23,7 +24,7 @@ export  default function TypeThree(props){
                         </div>
                         <div className="col-md-6">
                             <div className="mt-3">
-                                <Image alt="section display" src={props.section.img} width={500} height={400} />
+                                <Image  loader={imageLoader}  alt="section display" src={props.section.img} width={500} height={400} />
                                 <RotateText rotate={props.section.rotate} />
                             </div>
                         </div>

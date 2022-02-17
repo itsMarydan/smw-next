@@ -1,140 +1,107 @@
 import Banner from "../components/banner";
-import TypeOne from "../components/section-layouts/type-one";
-import TypeTwo from "../components/section-layouts/type-two";
 import BorderedWrap from "../components/section-layouts/bordered-wrap";
 import ActionCard from "../components/cards/actionCard";
-import {useEffect, useState} from "react";
 import BibleVerse from "../components/boards/bibleVerse";
 import ContentCard from "../components/cards/contentCard";
 import TypeFour from "../components/section-layouts/type-four";
+import axios from "axios";
+import {API_DOMAIN} from "../helpers/ENUM";
+import {forEach} from "react-bootstrap/ElementChildren";
 
 //our-domain.com/
-export default function Home() {
-    const bannerMessage ="Star Mission World";
-    const [bibleVerseKey, setBibleVerseKey] = useState(0);
-    const highlights = [
-        {
-            img: "/images/mission.jpg",
-            title: "Card Title",
-            subtitle: "Card Subtitle",
-            content: "Some quick example text to build on the card title and make up the bulk of the cards content.Some quick example text to build on the card title and make up the bulk of the cards content.",
-            tag: "Pray",
-            linkLabel: "See More",
-            linkUrl: "/highlights"
-        }, {
-            img: "/images/mission.jpg",
-            title: "Card Title",
-            subtitle: "Card Subtitle",
-            content: "Some quick example text to build on the card title and make up the bulk of the cards content.Some quick example text to build on the card title and make up the bulk of the cards content.",
-            tag: "Pray",
-            linkLabel: "See More",
-            linkUrl: "/highlights"
-        }
-    ]
+
+export async function getStaticProps() {
+    const key = 'Home'
+    const urlHome = `${API_DOMAIN}/api/home/${key}`;
+    const resHome = await axios.get(urlHome);
+    const urlBible = `${API_DOMAIN}/api/bibles`;
+    const resBible = await axios.get(urlBible);
+    const urlCard = `${API_DOMAIN}/api/cards`
+    const resCard = await axios.get(urlCard);
+    const home = await resHome.data;
+    const bibleVerses = await resBible.data;
+    const cards = await resCard.data;
+    const urlHighlight = `${API_DOMAIN}/api/highlights`;
+    const resHighlight = await axios.get(urlHighlight);
+    const highlights = await resHighlight.data;
+
+    return {
+        props: {
+            home: home,
+            bibleVerses: bibleVerses,
+            cards: cards,
+            highlights: highlights
+        },
+        revalidate: 10,
+    }
+
+}
+
+export default function Home(props) {
+    const bannerMessage = props.home.pageHeader;
+    const imageUrl = props.home.imageOne;
+    const highlights = props.highlights;
     const typeOneData = {
-        image: '/images/white.jpg',
-        header: "Our Mission",
-        content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+        image: imageUrl,
+        header: props.home.headerOne,
+        content: props.home.contentOne,
         button: {
-            url: 'about',
-            label: "Learn More"
+            url: props.home.buttonUrlOne,
+            label: props.home.buttonLabelOne
         }
     }
-    const cardArray=[
-        {
-        title: "Send A Prayer",
-        info:  "Send a short prayer request and we will continuously pray with you",
-        button: {
-            label: "Start",
-            url:"/send-prayer",
-        }
-    },{
-        title: "Resources",
-        info:  "Find materials and Programs our team members enjoy",
-        button: {
-            label: "Enjoy",
-            url:"/resources",
-        }
-    },{
-        title: "Get Involved",
-        info: "Find out how to get involved with Start Mission World",
-        button: {
-            label: "Start",
-            url:"/get-involved",
-        }
-    },{
-        title: "Highlights",
-        info: "Enjoy Kingdom Highlights and moments you dont want to miss",
-        button: {
-            label: "View",
-            url:"/highlights",
-        }
-    }];
-    const bibleVerses=[
-        {
-            location: "John 3:16",
-            content:"For God so loved the world that He gave His only begotten Son, that whoever believes in Him should not perish but have everlasting life.",
-            version: "NKJV"
-        },{
-            location: "Mathew 6:33",
-            content:" But seek first the kingdom of God and His righteousness, and all these things shall be added to you",
-            version: "NKJV"
-        },{
-            location: "Psalm 119:105",
-            content:"Your word is a lamp to my feet And a light to my path.",
-            version: "NKJV"
-        }
-    ]
-    const randomVerse = Math.floor(Math.random() * bibleVerses.length);
-    useEffect(() => {
-        setBibleVerseKey(randomVerse);
-    }, [bannerMessage, randomVerse]);
+
+
+    const cardArray =props.cards;
+    const bibleVerses = props.bibleVerses;
+    const bibleVerseKey = Math.floor(Math.random() * bibleVerses.length);
     return (
-      <>
-          <Banner bannerMessage={bannerMessage} />
-          <div className="bg-dark-choice vh-80">
-              <div className="container">
-                  <div className="text-white">
-                      <TypeFour section={typeOneData} />
-                  </div>
-              </div>
-          </div>
+        <>
+            <Banner bannerMessage={bannerMessage}/>
+            <div className="bg-dark-choice vh-80">
+                <div className="container">
+                    <div className="text-white">
+                        <TypeFour section={typeOneData}/>
+                    </div>
+                </div>
+            </div>
 
-          <BorderedWrap>
-              <BibleVerse item={bibleVerses[bibleVerseKey]} />
-          </BorderedWrap>
+            <BorderedWrap>
+                <BibleVerse item={bibleVerses[bibleVerseKey]}/>
+            </BorderedWrap>
 
-              <div className="container p-5">
-                  <div className="row">
-                      {cardArray.map((item, key)=> (
-                          <div className="col-md-3 p-1" key={key}>
-                              <ActionCard card={item} />
-                          </div>
-                      ))}
-                  </div>
-              </div>
-          <BorderedWrap>
-              <div className="text-center">
-                  <div className="highlightTitle">Highlights</div>
-              </div>
-          </BorderedWrap>
-          <div className="container">
-              <div className="container">
-                  <div className="mt-4">
-                      <div className="container mt-4">
-                          <div className="container mx-auto mt-4">
-                              <div className="row">
-                                      {highlights.map((item, key) => (
-                                          <div  key={key} className="col-md-4">
-                                              <ContentCard card={item}/>
-                                          </div>
-                                      ))}
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </>
-  )
+            <div className="container p-5">
+                <div className="row">
+                    {cardArray.map((item, key) => (
+                        <div className="col-md-3 p-1" key={key}>
+                            <ActionCard card={item}/>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <BorderedWrap>
+                <div className="text-center">
+                    <div className="highlightTitle">{props.home.headerTwo}</div>
+                </div>
+            </BorderedWrap>
+            <div className="container">
+                <div className="container">
+                    <div className="mt-4">
+                        <div className="container mt-4">
+                            <div className="container mx-auto mt-4">
+                                <div className="row">
+                                    {highlights.map((item, key) => (
+                                        <div key={key} className="col-md-4">
+                                            <ContentCard card={item}/>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
 }
+

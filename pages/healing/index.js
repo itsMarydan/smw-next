@@ -3,30 +3,43 @@ import TypeThree from "../../components/section-layouts/type-three";
 import BorderedWrap from "../../components/section-layouts/bordered-wrap";
 import SearchInput from "../../components/searchInput";
 import ResourceList from "../../components/section-layouts/resource-list";
-import {resources} from "../../components/data/resourcedata";
+import {API_DOMAIN} from "../../helpers/ENUM";
+import axios from "axios";
+
+export async function getStaticProps() {
+
+    const key = 'Healing'
+    const urlPage = `${API_DOMAIN}/api/healing/${key}`;
+    const resPage = await axios.get(urlPage);
+    const page = await resPage.data;
+    const urlResource = `${API_DOMAIN}/api/resources`;
+    const resResource = await axios.get(urlResource);
+    const resources = await resResource.data;
+
+    return {
+        props: {
+            page: page,
+            resources: resources,
+        },
+        revalidate: 10,
+    }
+
+}
 
 
-export default function Healing() {
-    const bannerMessage = "Inner Healing";
-    const rotateText = [
-        "Just Breathe",
-        "Love is never Far",
-        "Let go of the past",
-        "Experience inner peace"
-    ]
+export default function Healing(props) {
+    const bannerMessage = props.page.pageTitle;
+    const rotateText = props.page.rotateText;
 
     const section = {
         rotate: rotateText,
-        img: "/images/inner.jpg",
-        title: "Healing that starts from the inside out",
-        content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using Content here, content here, " +
-            "making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, " +
-            "and a search for lorem ipsum will uncover many web sites still in their infancy. Various versions have evolved over the years," +
-            " sometimes by accident, sometimes on purpose (injected humour and the like).",
+        img: props.page.image,
+        title: props.page.pageHeader,
+        content:props.page.content,
 
     }
 
-    const healingResources = resources.filter(resource => resource.isHealing === true);
+    const healingResources = props.resources.filter(resource => resource.isHealing === true);
     return (
         <>
             <Banner bannerMessage={bannerMessage}/>
