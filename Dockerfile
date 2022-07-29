@@ -10,7 +10,7 @@ FROM node:14-alpine AS builder
 WORKDIR /app
 ENV PORT 3000
 
-ENV API_URL https://2252-72-106-136-194.ngrok.io
+ENV API_URL  https://admin.starmissionworld.com
 ENV ENV_USE 1
 ENV DOMAIN localhost
 COPY . .
@@ -22,8 +22,8 @@ WORKDIR /app
 
 ENV NODE_ENV production
 ENV PORT 3000
-ENV DOMAIN localhost
-ENV API_URL  https://2252-72-106-136-194.ngrok.io 
+ENV IMAGE_DOMAIN localhost
+ENV API_URL   https://admin.starmissionworld.com
 ENV ENV_USE 1
 
 RUN addgroup -g 1001 -S nodejs
