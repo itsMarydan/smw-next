@@ -3,14 +3,14 @@ import Envelop from "../../components/envelop";
 import CenteredCardWithBackground from "../../components/cards/centered-card-with-background";
 import BtnTypeTwo from "../../components/Buttons/BtnTypeTwo";
 import {useState} from "react";
-import {API_DOMAIN} from "../../helpers/ENUM";
+import {API_DOMAIN, REVALIDATE} from "../../helpers/ENUM";
 import axios from "axios";
 
 export async function getStaticProps() {
     const key = 'send-prayer'
     const urlSendPrayer = `${API_DOMAIN}/api/sendprayer/${key}`;
     const resSendPrayer = await axios.get(urlSendPrayer);
-    const urlPrayers = `${API_DOMAIN}/api/prayerforms`
+    const urlPrayers = `${API_DOMAIN}/api/form/prayerforms`
     const resPrayers = await axios.get(urlPrayers);
 
     const sendPrayer = await resSendPrayer.data;
@@ -21,7 +21,7 @@ export async function getStaticProps() {
             sendPrayer: sendPrayer,
             prayers: prayers
         },
-        revalidate: 10,
+        revalidate: REVALIDATE,
     }
 
 }
@@ -39,7 +39,30 @@ export default function SendPrayer(props) {
         setShowPrayerForm(true);
     }
 
-    function submitPrayer() {
+    async function submitPrayer(name, email,message, setError, setShowError, setShowSuccess) {
+        if (!message) {
+            setError('Uh-Oh! you must provide a prayer request');
+            setShowError(true)
+            return
+        }
+
+        const formSubmitUrl = `/api/prayer`
+        try {
+            await axios.post(formSubmitUrl, {
+                name: name,
+                email: email,
+                prayerRequest: message,
+                submittedOn: new Date(),
+
+            })
+
+        } catch (error) {
+            console.log(error);
+            setError('Uh-Oh an error occurred');
+            setShowError(true)
+            return
+        }
+        setShowSuccess(true);
         setShowPrayerForm(false);
         setShowPrayerRequest(true);
     }

@@ -1,7 +1,7 @@
 import Banner from "../../components/banner";
 import SearchInput from "../../components/searchInput";
 import ResourceList from "../../components/section-layouts/resource-list";
-import {API_DOMAIN} from "../../helpers/ENUM";
+import {API_DOMAIN, REVALIDATE} from "../../helpers/ENUM";
 import axios from "axios";
 
 export async function getStaticProps() {
@@ -21,7 +21,7 @@ export async function getStaticProps() {
             page: page
 
         },
-        revalidate: 10,
+        revalidate: REVALIDATE,
     }
 
 }

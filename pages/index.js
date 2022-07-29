@@ -5,7 +5,7 @@ import BibleVerse from "../components/boards/bibleVerse";
 import ContentCard from "../components/cards/contentCard";
 import TypeFour from "../components/section-layouts/type-four";
 import axios from "axios";
-import {API_DOMAIN} from "../helpers/ENUM";
+import {API_DOMAIN, REVALIDATE} from "../helpers/ENUM";
 import {forEach} from "react-bootstrap/ElementChildren";
 
 //our-domain.com/
@@ -32,7 +32,7 @@ export async function getStaticProps() {
             cards: cards,
             highlights: highlights
         },
-        revalidate: 10,
+        revalidate: REVALIDATE,
     }
 
 }

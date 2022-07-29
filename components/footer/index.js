@@ -1,12 +1,11 @@
 import BtnTypeThree from "../Buttons/BtnTypeThree";
 import Link from 'next/link';
+import ContactForm from "../Forms/contactForm";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import {API_DOMAIN} from "../../helpers/ENUM";
 
 export default function Footer(props) {
-    function formSubmit() {
-
-    }
-
-
 
     return (
         <>
@@ -39,19 +38,7 @@ export default function Footer(props) {
                                 <hr/>
                             </div>
                             <div className="col-md-5">
-                                <form>
-                                    <fieldset className="form-group">
-                                        <input type="email" className="form-control" id="exampleInputEmail1"
-                                               placeholder="Enter email"/>
-                                    </fieldset>
-                                    <fieldset className="form-group mt-2">
-                                        <textarea className="form-control" id="exampleMessage"
-                                                  rows={3} placeholder="Message"></textarea>
-                                    </fieldset>
-                                    <fieldset className="form-group text-xs-right">
-                                        <BtnTypeThree clickAction={formSubmit} button={props.footer.button}/>
-                                    </fieldset>
-                                </form>
+                                <ContactForm  button={props.footer.button} />
                             </div>
                         </div>
                     </div>

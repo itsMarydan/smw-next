@@ -1,7 +1,7 @@
 import Banner from "../../components/banner";
 import classes from "../events/event.module.css";
 import ContentCard from "../../components/cards/contentCard";
-import {API_DOMAIN} from "../../helpers/ENUM";
+import {API_DOMAIN, REVALIDATE} from "../../helpers/ENUM";
 import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 
@@ -19,7 +19,7 @@ export async function getStaticProps() {
             page: page,
             highlights: highlights
         },
-        revalidate: 10,
+        revalidate: REVALIDATE,
     }
 
 }

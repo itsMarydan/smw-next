@@ -9,7 +9,7 @@ import {useState} from "react";
 import ZoomCard from "../../components/cards/zoomCard";
 import {ZoomSessions} from "../../components/data/zoomSessions";
 import FormOne from "../../components/Forms/formOne";
-import {API_DOMAIN} from "../../helpers/ENUM";
+import {API_DOMAIN, REVALIDATE} from "../../helpers/ENUM";
 import axios from "axios";
 
 
@@ -25,9 +25,8 @@ export async function getStaticProps() {
         props: {
             page: page,
             zoom: zoom
-
         },
-        revalidate: 10,
+        revalidate: REVALIDATE,
     }
 
 }

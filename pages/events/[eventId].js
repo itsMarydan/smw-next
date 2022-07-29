@@ -2,18 +2,30 @@ import {useRouter} from "next/router";
 import CenteredCardWithBackground from "../../components/cards/centered-card-with-background";
 import classes from "./event.module.css";
 import BtnTypeTwo from "../../components/Buttons/BtnTypeTwo";
+import {API_DOMAIN} from "../../helpers/ENUM";
+import axios from "axios";
 
-export default function EventPage(){
+export async function getServerSideProps(context) {
+
+    const {eventId} = context.query;
+    const urlPage = `${API_DOMAIN}/api/event/${eventId}`;
+    const resPage = await axios.get(urlPage);
+    const page = await resPage.data;
+    return {
+        props: {
+            page: page,
+        }
+    }
+
+}
+export default function EventPage(props){
    const router = useRouter();
    const eventId = router.query.eventId;
 
    const eventDetails = {
-       title: "New Event Title",
-       content: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout." +
-           "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
-       button:{
-           label: "Add to Calender"
-       }
+       title: props.page.title,
+       content: props.page.content,
+       button: props.page.button
 
    }
 

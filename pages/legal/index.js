@@ -1,5 +1,5 @@
 import Banner from "../../components/banner";
-import {API_DOMAIN} from "../../helpers/ENUM";
+import {API_DOMAIN, REVALIDATE} from "../../helpers/ENUM";
 import axios from "axios";
 import ReactHtmlParser from 'react-html-parser';
 
@@ -8,13 +8,13 @@ export async function getStaticProps() {
     const urlPage = `${API_DOMAIN}/api/page/${key}`;
     const resPage = await axios.get(urlPage);
     const page = await resPage.data;
+
     return {
         props: {
             page: page,
 
-
         },
-        revalidate: 10,
+        revalidate: REVALIDATE,
     }
 
 }

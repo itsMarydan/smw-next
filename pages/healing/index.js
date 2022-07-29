@@ -3,7 +3,7 @@ import TypeThree from "../../components/section-layouts/type-three";
 import BorderedWrap from "../../components/section-layouts/bordered-wrap";
 import SearchInput from "../../components/searchInput";
 import ResourceList from "../../components/section-layouts/resource-list";
-import {API_DOMAIN} from "../../helpers/ENUM";
+import {API_DOMAIN, REVALIDATE} from "../../helpers/ENUM";
 import axios from "axios";
 
 export async function getStaticProps() {
@@ -21,7 +21,7 @@ export async function getStaticProps() {
             page: page,
             resources: resources,
         },
-        revalidate: 10,
+        revalidate: REVALIDATE,
     }
 
 }

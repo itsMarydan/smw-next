@@ -2,8 +2,10 @@ import classes from "./form.module.css";
 import BtnTypeTwo from "../Buttons/BtnTypeTwo";
 import {useState} from "react";
 import axios from "axios";
-export default function FormTwo(){
-
+export default function FormThree(){
+    const button ={
+        label: "Send Request"
+    }
     const [email, setEmail] = useState('');
     const [message, setMessage] = useState('');
     const [phone, setPhone] = useState('');
@@ -11,7 +13,7 @@ export default function FormTwo(){
     const [error, setError] = useState('');
     const [showError, setShowError] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
-    const interestType = "Star Mission World";
+    const interestType = "Hosting Events";
 
     function onEmailChange(e) {
         setEmail(e.target.value)
@@ -30,9 +32,6 @@ export default function FormTwo(){
         setPhone(e.target.value)
     }
 
-    const button ={
-        label: "Send Request"
-    }
     async function processForm() {
         if (!message) {
             setError('Uh-Oh! you must provide a message');
@@ -56,6 +55,7 @@ export default function FormTwo(){
         }
         setShowSuccess(true);
     }
+
     return(
         <>
             <div className={classes.form}>
@@ -89,7 +89,7 @@ export default function FormTwo(){
                                    placeholder="+1 234 567 8910"   required/>
                         </div>
                         <div className="form-group mt-2">
-                            <label htmlFor="message">Give a personal introduction and talk about how you or your group would like to contribute to SMW</label>
+                            <label htmlFor="message">More about you and the event you are hosting</label>
                             <textarea onChange={(e) => onMessageChange(e)} className="form-control" id="message" rows="4" />
                         </div>
                         <div className="mb-1">

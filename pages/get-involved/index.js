@@ -1,6 +1,6 @@
 import Banner from "../../components/banner";
 import FormTwo from "../../components/Forms/formTwo";
-import {API_DOMAIN} from "../../helpers/ENUM";
+import {API_DOMAIN, REVALIDATE} from "../../helpers/ENUM";
 import axios from "axios";
 
 export async function getStaticProps() {
@@ -14,7 +14,7 @@ export async function getStaticProps() {
         props: {
             page: page,
         },
-        revalidate: 10,
+        revalidate: REVALIDATE,
     }
 
 }
